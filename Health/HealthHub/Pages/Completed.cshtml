@@ -1,0 +1,16 @@
+@page
+
+
+<div class="bg-white text-center">
+    <h1>Hvala!</h1>
+    <p>Vaša porudžbina broj #@OrderId</p>
+    <p>Rok isporuke 1 do 3 dana.</p>
+    <a class="btn btn-warning" asp-controller="Home">Nazad na početak</a>
+</div>
+
+@functions 
+{
+    [BindProperty(SupportsGet = true)]
+    public string? OrderId { get; set; }
+}
+

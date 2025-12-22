@@ -1,0 +1,80 @@
+@using System.Globalization;
+@page "/admin/products"
+@page "/admin"
+@inherits OwningComponentBase<I_StoreRepository>
+
+<table class="table table-light table-sm table-hover table-bordered text-center">
+    <thead>
+        <tr>
+            <th>KOD</th>
+            <th>Proizvod</th>
+            <th>Kategorija</th>
+            <th>Cena</th><td/>
+        </tr>
+    </thead>
+    <tbody>
+    @if (ProductData?.Count() > 0) 
+    {
+        @foreach (Product p in ProductData) 
+        {
+        <tr>
+            <td>@p.ProductID</td>
+            <td>@p.Name</td>
+            <td>@p.Category</td>
+            <td>@p.Price.ToString("c",CultureInfo.CreateSpecificCulture("sr-RS"))</td>
+            <td>
+                <NavLink class="btn btn-success btn-sm"
+                        href="@GetDetailsUrl(p.ProductID ?? 0)">
+                    Detalji
+                </NavLink>
+
+                <NavLink class="btn btn-outline-secondary btn-sm"
+                        href="@GetEditUrl(p.ProductID ?? 0)">
+                    Promeni
+                </NavLink>
+                <button class="btn btn-danger btn-sm" 
+                        @onclick="@(e => DeleteProduct(p))">
+                    Obriši
+                </button>
+
+            </td>
+        </tr>
+        }
+    } 
+    else 
+    {
+        <tr>
+            <td colspan="5" class="text-center">Nema Proizvoda</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<NavLink class="btn btn-success" href="/admin/products/create">Kreiraj novi proizvod</NavLink>
+
+@code 
+{
+    public I_StoreRepository Repository => Service;
+
+    public IEnumerable<Product> ProductData { get; set; } = Enumerable.Empty<Product>();
+    
+    protected async override Task OnInitializedAsync() 
+    {
+        await UpdateData();
+    }
+
+    public async Task UpdateData() 
+    {
+        ProductData = await Repository.Products.ToListAsync();
+    }
+    public async Task DeleteProduct(Product p) 
+    {
+        Repository.DeleteProduct(p);
+        await UpdateData();
+    }
+
+
+    public string GetDetailsUrl(long id) => $"/admin/products/details/{id}";
+    public string GetEditUrl(long id) => $"/admin/products/edit/{id}";
+}
+

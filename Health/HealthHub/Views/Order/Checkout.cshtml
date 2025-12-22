@@ -1,0 +1,45 @@
+@model Order
+
+<h2>Poružbina</h2>
+
+<p>Upišite Vaše podatke.</p>
+
+<div asp-validation-summary="All" class="text-warning"></div>
+
+<form asp-action="Checkout" method="post">
+    <h3>Podaci:</h3>
+    <div class="form-group">
+        <label>Ime:</label><input asp-for="Name" class="form-control" />
+    </div>
+    <h3>Adresa</h3>
+    <div class="form-group">
+        <label>Linija 1:</label><input asp-for="Line1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Linija 2:</label><input asp-for="Line2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Linija 3:</label><input asp-for="Line3" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Grad:</label><input asp-for="City" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Okrug/opština:</label><input asp-for="State" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Dodatne informacije:</label><input asp-for="Zip" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Država:</label><input asp-for="Country" class="form-control" />
+    </div>
+    <h6>Posebna opcije (inače se paket pakuje u najlonsko pakovanje)</h6>
+    <div class="checkbox">
+    <label>
+        <input asp-for="GiftWrap" /> Paket upakovan u kutiju.
+    </label>
+    </div>
+    <div class="text-center">
+        <input class="btn btn-warning" type="submit" value="Završi porudžbinu" />
+    </div>
+</form>
