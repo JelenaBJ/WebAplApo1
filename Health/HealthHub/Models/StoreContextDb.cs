@@ -9,7 +9,6 @@ namespace HealthHub.Models
     public class StoreContextDb : DbContext
     {
         public StoreContextDb(DbContextOptions<StoreContextDb> options) : base(options) {}
-        public DbSet<Product> Products => Set<Product>();
-        public DbSet<Order> Orders => Set<Order>();
+       
     }
 }
