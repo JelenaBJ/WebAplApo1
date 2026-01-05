@@ -11,7 +11,7 @@ namespace HealthHub.Controllers
     public class HomeController: Controller
     {
         private I_StoreRepository repository; 
-        public int PageSize = 4; 
+        public int PageSize = 5; 
 
         public HomeController(I_StoreRepository repo)
         {
