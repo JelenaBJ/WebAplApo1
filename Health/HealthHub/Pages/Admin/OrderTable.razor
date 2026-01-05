@@ -1,36 +1,3 @@
-<table class="table table-secondary table-sm table-hover table-bordered-dark text-center">
-    <thead>
-        <tr><th colspan="6" class="text-center">@TableTitle</th></tr>
-    </thead>
-    <tbody>
-        @if (Orders?.Count() > 0) 
-        {
-            @foreach (Order o in Orders) 
-            {
-                <tr><td>@o.Name</td><td>@o.City</td><td>@o.Country</td><th>Proizvod/i</th><th>Količina</th>
-                    <td>
-                        <button class="btn btn-sm btn-danger"
-                            @onclick="@(e => OrderSelected.InvokeAsync(o.OrderID))">
-                            @ButtonLabel
-                        </button>
-                    </td>
-                </tr>
-                @foreach (CartLine line in o.Lines) 
-                {
-                    <tr>
-                        <td colspan="3"></td>
-                         <td>@line.Product.Name</td><td>@line.Quantity</td>
-                        <td></td>
-                    </tr>
-                }
-            }
-        } 
-        else 
-        {
-            <tr><td colspan="5" class="text-center">Nema porudžbina</td></tr>
-        }
-    </tbody>
-</table>
 
 @code 
 {
