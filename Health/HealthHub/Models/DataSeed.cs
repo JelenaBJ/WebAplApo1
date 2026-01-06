@@ -10,12 +10,7 @@ namespace HealthHub.Models
     {
         public static void EnsurePopulated(IApplicationBuilder app ) 
         {
-            StoreContextDb context = app.ApplicationServices.CreateScope().ServiceProvider.GetRequiredService<StoreContextDb>(); 
-
-            if (context.Database.GetPendingMigrations().Any()) 
-            {
-                context.Database.Migrate();
-            } 
+            
 
             if (!context.Products.Any())  
             {
