@@ -15,7 +15,7 @@ namespace HealthHub.Models
             context = ctx;
         }
         
-        public IQueryable<Order> Orders => context.Orders
+       public IQueryable<Order> Orders => context.Orders
                     .Include(o => o.Lines)
                     .ThenInclude(l => l.Product);
         

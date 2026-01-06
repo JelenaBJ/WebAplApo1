@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace HealthHub.Models
 {
-    public class Order
+   public class Order
     {
         [BindNever]
         public int OrderID { get; set; }

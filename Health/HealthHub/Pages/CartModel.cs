@@ -28,7 +28,6 @@ namespace HealthHub.Pages
             ReturnUrl = returnUrl ?? "/";
             //Cart = HttpContext.Session.GetJson<Cart>("cart") ?? new Cart();
         }
-        
         public IActionResult OnPost(long productId, string returnUrl) 
         {
             Product? product = repository.Products
@@ -45,7 +44,7 @@ namespace HealthHub.Pages
                 cl.Product.ProductID == productId).Product);
             return RedirectToPage(new { returnUrl = returnUrl });
         }   
-
+        
 
 
 
