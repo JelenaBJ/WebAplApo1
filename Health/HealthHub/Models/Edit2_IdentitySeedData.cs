@@ -22,7 +22,6 @@ namespace HealthHub.Models
             {
                 context.Database.Migrate();
             }
-        
             UserManager<IdentityUser> userManager = app.ApplicationServices
                 .CreateScope().ServiceProvider
                 .GetRequiredService<UserManager<IdentityUser>>();
