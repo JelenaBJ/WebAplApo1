@@ -1,0 +1,44 @@
+@using System.Globalization;
+@page "/admin/products"
+@page "/admin"
+@inherits OwningComponentBase<I_StoreRepository>
+
+<table class="table table-light table-sm table-hover table-bordered text-center">
+    <thead>
+        <tr>
+            <th>KOD</th>
+            <th>Proizvod</th>
+            <th>Kategorija</th>
+            <th>Cena</th><td/>
+        </tr>
+    </thead>
+    <tbody>
+    @if (ProductData?.Count() > 0) 
+    {
+        @foreach (Product p in ProductData) 
+        {
+        <tr>
+            <td>@p.ProductID</td>
+            <td>@p.Name</td>
+            <td>@p.Category</td>
+            <td>@p.Price.ToString("c",CultureInfo.CreateSpecificCulture("sr-RS"))</td>
+            <td>
+                <NavLink class="btn btn-success btn-sm"
+                        href="@GetDetailsUrl(p.ProductID ?? 0)">
+                    Detalji
+                </NavLink>
+
+                <NavLink class="btn btn-outline-secondary btn-sm"
+                        href="@GetEditUrl(p.ProductID ?? 0)">
+                    Promeni
+                </NavLink>
+                <button class="btn btn-danger btn-sm" 
+                        @onclick="@(e => DeleteProduct(p))">
+                    Obriši
+                </button>
+
+            </td>
+        </tr>
+        }
+    } 
+    else 
