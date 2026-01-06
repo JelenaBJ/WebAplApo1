@@ -6,6 +6,16 @@
         Sve
     </a> 
 
-    
+    @foreach (string category in Model ?? Enumerable.Empty<string>()) 
+    {
+        <a class="btn 
+	         @(category == ViewBag.SelectedCategory ? "btn-secondary": 
+               "btn-outline-light")"  
+            asp-action="Index" asp-controller="Home"
+            asp-route-category="@category"
+            asp-route-productPage="1">
+            @category
+        </a>
+    }
 
 </div>
