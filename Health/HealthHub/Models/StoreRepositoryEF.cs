@@ -7,7 +7,11 @@ namespace HealthHub.Models
 {
     public class StoreRepositoryEF : I_StoreRepository
     {
-        
+        public StoreRepositoryEF(StoreContextDb ctx) 
+        {
+            context = ctx;
+        } 
+
 
 
 
