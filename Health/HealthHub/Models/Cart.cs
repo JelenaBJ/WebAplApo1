@@ -7,6 +7,9 @@ namespace HealthHub.Models
 {
     public class Cart
     {
+         public List<CartLine> Lines { get; set; } = new List<CartLine>();
+
+        
 
         
     }
