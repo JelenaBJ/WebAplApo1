@@ -16,7 +16,17 @@ namespace HealthHub.Models
 
         [Required(ErrorMessage = "Upišite opis proizvoda")]       
         public string Description { get; set; } = String.Empty;
+        
+[Required]
+        [Range(0.01, double.MaxValue, ErrorMessage = "Upišite cenu proizvoda")]
+        public decimal Price { get; set; }
+        
+        [Required(ErrorMessage = "Upišite kategoriju proizvoda")]
+        public string Category { get; set; } = String.Empty;
 
+
+    }
+}
         
         
        
