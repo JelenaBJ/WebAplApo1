@@ -43,3 +43,40 @@
 </EditForm>
 
 @code 
+{
+    public I_StoreRepository Repository => Service;
+
+    [Inject]
+    public NavigationManager? NavManager { get; set; }
+
+    [Parameter]
+    public long Id { get; set; } = 0;
+
+    public Product Product { get; set; } = new Product();
+
+    protected override void OnParametersSet() 
+    {
+        if (Id != 0) 
+        {
+            Product = Repository.Products.FirstOrDefault(p => p.ProductID == Id)
+            ?? new();
+        }
+    }
+
+    public void SaveProduct() 
+    {
+        if (Id == 0) 
+        {
+            Repository.CreateProduct(Product);
+        } 
+        else 
+        {
+            Repository.SaveProduct(Product);
+        }
+
+        NavManager?.NavigateTo("/admin/products");
+    }
+
+    public string ThemeColor => Id == 0 ? "success" : "secondary";
+    public string TitleText => Id == 0 ? "Kreiraj" : "Promeni";
+}
